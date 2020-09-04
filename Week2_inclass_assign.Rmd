@@ -1,7 +1,7 @@
 ---
 title: "InClassAssign2"
-name:
-date:
+name: "Jacob Williams"
+date: "9/3/2020"
 output: html_document
 ---
 Surveys are frequently used to measure political behavior such as voter turnout,
@@ -25,12 +25,17 @@ dim(data_turnout)
 
 summary(data_turnout)
 
+("Rows")
 nrow(data_turnout)
 
+("Columns")
 ncol(data_turnout)
   
 VAP <- data_turnout$VAP
+("This section is the Voter-Age Population Turnout")
 (VAP)
+
+("This dataset encompasses elections from 1980 through 2008, there are over 100 observations in this dataset")
 
 ```
 
@@ -40,18 +45,19 @@ the VAP variable does not include these individuals in the count. Next, calculat
 the turnout rate using the voting eligible population or VEP. What difference do
 you observe?
 ```{r}
-#(total number of eliglble overseas)
+('total number of eligible including overseas')
 VAP_overseas <- data_turnout$VAP + data_turnout$overseas
 (VAP_overseas)
 
+("Turnout Rate including overeas voters")
 turnout_VAP_overseas <- (data_turnout$total/ VAP_overseas) * 100
 
 (turnout_VAP_overseas)
-
+("Turnout rate using only the VEP")
 turnout_VEP <- (data_turnout$total / data_turnout$VEP) * 100
 
 (turnout_VEP)
-
+("We observe that there is roughly a 2% difference in the turnout rate with the VEP being higher than the VAP+overseas")
 ```
 
 3. Compute the differences between the VAP and ANES estimates of turnout rate.
@@ -59,6 +65,18 @@ How big is the difference on average? What is the range of the differences?
 Conduct the same comparison for the VEP and ANES estimates of voter turnout.
 Briefly comment on the results.
 ```{r}
+diff <- data_turnout$ANES - turnout_VAP_overseas
+
+(diff)
+
+##(min(diff))
+("The range of differences is:")
+(max(diff) - min(diff))
+
+diff_VEP <- data_turnout$ANES - turnout_VEP
+(diff_VEP)
+
+("This difference shows that the ANES estimate is closer to the voter-eligible population turnout than it is the total voting age population turnout.")
 
 
 ```
@@ -69,6 +87,32 @@ periods. Calculate the difference between the VEP turnout rate and the ANES
 turnout rate separately for each year within each period. Has the bias of ANES
 increased over time?
 ```{r}
+##(turnout_VEP)
+names(turnout_VEP) <- data_turnout$year
+##(names(turnout_VEP))
+
+presidential_VEP <- subset(turnout_VEP, data_turnout$year %% 4 == 0)##turnout_VEP[seq(from = 1, to = nrow(data_turnout), by = 2)] 
+
+
+midterm_VEP <- subset(turnout_VEP, data_turnout$year %% 2 == 0 & data_turnout$year %% 4 != 0)##turnout_VEP[seq(from = 2, to = nrow(data_turnout), by = 2)]
+
+
+turnout_ANES <- data_turnout$ANES
+names(turnout_ANES) <- data_turnout$year
+##(turnout_ANES)
+presidential_ANES <- subset(turnout_ANES, data_turnout$year %% 4 == 0)##turnout_ANES[seq(from = 1, to = nrow(data_turnout), by = 2)]
+
+midterm_ANES <- subset(turnout_ANES, data_turnout$year %% 2 == 0 & data_turnout$year %% 4 != 0)##turnout_ANES[seq(from = 2, to = nrow(data_turnout), by = 2)]
+
+midterm_diff <- midterm_ANES - midterm_VEP
+("The difference between ANES and VEP in midterm elections")
+(midterm_diff)
+
+presidential_diff <- presidential_ANES - presidential_VEP
+("The difference between ANES and VEP in presidential elections")
+(presidential_diff)
+
+("In miterm elections years, the ANES has overestimated the turnout while it stayed relatively consistent in presidential elections years.")
 
 ```
 
@@ -80,6 +124,29 @@ overseas ballots counted from the total ballots in 2008. Compare the adjusted
 VAP turnout with the unadjusted VAP, VEP, and the ANES turnout rate. Briefly
 discuss the results.
 ```{r}
+adjusted_VAP <- (data_turnout$VAP) - data_turnout$noncit - data_turnout$felons
+names(adjusted_VAP) <- data_turnout$year
+(adjusted_VAP['2008'])
 
+
+adjusted_VAP_turnout <- ((data_turnout$total[14] - data_turnout$overseas[14])/ data_turnout$VAP[14])  * 100##soft code this section
+
+('Adjusted_VAP_turnout')
+(adjusted_VAP_turnout)
+
+('Unadjusted VAP')
+unadjusted_VAP_turnout <- (data_turnout$total/data_turnout$VAP) * 100 
+names(unadjusted_VAP_turnout) <- data_turnout$year
+(unadjusted_VAP_turnout['2008'])
+
+("VEP")
+names(turnout_VEP) <- data_turnout$year
+(turnout_VEP['2008'])
+
+('ANES turnout')
+names(turnout_ANES) <- data_turnout$year
+(turnout_ANES['2008'])
+
+("The adjusted VAP turnout is lower than every other turnout indicators, which shows that the lack of adjustent for prison and overseas populations will inheritely overexaggerate the rate")
 ```
 
