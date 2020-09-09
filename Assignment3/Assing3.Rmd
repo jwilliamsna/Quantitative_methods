@@ -1,6 +1,8 @@
 ---
 title: "in class_assign3"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 SUCCESS OF LEADER ASSASSINATION AS A NATURAL EXPERIMENT
@@ -23,25 +25,19 @@ experience at least one leader assassination attempt? (The unique() function, Wh
 
 ```{r}
 library(tidyverse)
+library(readr)
 leaders <- read.csv("leaders.csv")
 leaders
 
-ncol(leaders)
-nrow(leaders)
-
 ##250 attempts were recorded in this data set
-class(leaders)
 unique_countries <- table(unique(leaders$country))
-(nrow(unique_countries))
-
+cat("Assassination attempts occurred in a total of ", nrow(unique_countries), "unique countries.\n\n")
 
 average_attempts_year <- mean(table(leaders$year))
 
-(mean(tapply(leaders$country, leaders$year, length)))
+cat("There were an average of ",average_attempts_year, "assassination attempts per year.\n")
 
-(average_attempts_year)
 success <- c(leaders$result)
-(success)
 
 ```
 
@@ -50,14 +46,24 @@ from the attack and 0 if the leader survives. Store this new variable as part of
 original data frame. What is the overall success rate of leader assassination? Does
 the result speak to the validity of the assumption that the success of assassination
 attempts is randomly determined?
-
 ```{r}
-class(leaders)
-leaders$result2 <- factor(leaders$result)
-(leaders)
-levels(leaders$result2)
-levels_leaders
-#leaders <- rbind(dataaaaa, successful)
+
+leaders$result <- factor(leaders$result)
+
+leaders$result_bin <- ifelse(leaders$result == "dies within a day after the attack" | leaders$result == "dies between a day and a week" | leaders$result == "dies between a week and a month" | leaders$result == "dies, timing unknown", 1, 0)
+
+success_rate <-  (sum(leaders$result_bin) / nrow(leaders)) * 100
+
+total_success <- sum(leaders$result_bin)
+
+total_failure <- nrow(leaders) - sum(leaders$result_bin)
+
+successful_attempts <- filter(leaders, leaders$result_bin == 1)
+
+unsuccessful_attempts <- filter(leaders, leaders$result_bin == 0)
+##This success rate, to an extent, implies that the success is randomly determined. If the success rate was much higher, we could assume that their were other factors making this the case. For us to truly determine to the random nature of this study, I believe that we would need much more information. 
+
+cat("The overall success rate of assassination attempts was ", (total_success / nrow(leaders)) * 100, "%\n")
 ```
 
 3. Investigate whether the average polity score over three years prior to an assassination
@@ -65,10 +71,26 @@ attempt differs on average between successful and failed attempts. Also,
 examine whether there is any difference in the age of targeted leaders between
 successful and failed attempts. Briefly interpret the results in light of the validity
 of the aforementioned assumption.
-
 ```{r}
+failure_polity <- mean(unsuccessful_attempts$politybefore)
+
+success_polity <- mean(successful_attempts$politybefore)
+cat("The average polity before the attempt for successful attempts was,", success_polity, "\n")
+
+cat("The average polity before the attempt for failed attempts was,", failure_polity, "\n")
+
+success_age <- mean(unsuccessful_attempts$age)
+
+failure_age <- mean(successful_attempts$age)
+
+cat("The average age before the attempt for successful attempts was,", success_age, "\n")
+
+cat("The average age before the attempt for failed attempts was,", failure_age)
+
 
 ```
+It appears that the more unstable a country is, the less likely a successful assassination attempt would become. Additionally, it appears that the older a leader is, the more likely they are to survive an assassination attempt. This could be result of leadershp experience or control of country, rather than simply by age. 
+
 
 4. Repeat the same analysis as in the previous question, but this time using the
 country’s experience of civil and international war. Create a new binary variable
@@ -77,14 +99,43 @@ if a country is in either civil or international war during the three years prio
 an assassination attempt. Provide a brief interpretation of the result.
 
 ```{r}
+leaders$warbefore <- ifelse(leaders$interwarbefore == 1 | leaders$civilwarbefore == 1, 1, 0)
+successful_attempts$warbefore <- ifelse(successful_attempts$interwarbefore == 1 | successful_attempts$civilwarbefore == 1, 1, 0)
+
+unsuccessful_attempts$warbefore <- ifelse(unsuccessful_attempts$interwarbefore == 1 | unsuccessful_attempts$civilwarbefore == 1, 1, 0)
+
+(total_warbefore_successful <- sum(successful_attempts$warbefore))
+
+(total_warbefore_unsuccessful <- sum(unsuccessful_attempts$warbefore))
+
+perc_success <- (total_warbefore_successful / total_success) * 100
+
+perc_unsuccess <- (total_warbefore_unsuccessful / total_failure) * 100
+
+peace_before_successful <- 
+
+cat("Wars were occurring before", total_warbefore_successful, "out of ", total_success, "successful attempts which comes to ", perc_success, "% of the time\n")
+
+cat("Wars were occurring before", total_warbefore_unsuccessful, "out of", total_failure, "unsuccessful attempt, which comes to", perc_unsuccess, "% of the time\n")
 
 ```
+This means that assassination attempts that occurred after a war had been raging, there was a slightly higher chance of the attempt being unsuccessful.Ultimately this means that an assassination attempt occurring in the wake of a period of peace actually has a slightly higher chance of success. 
 
 5. Does successful leader assassination cause democratization? Does successful
 leader assassination lead countries to war? When analyzing these data, be sure
 to state your assumptions and provide a brief interpretation of the results.
 
+I would assume that leader assassinations do not cause democratization and will likely lead countries to civil wars. 
 ```{r}
+average_polity_after_success <- mean(successful_attempts$polityafter)
 
+successful_attempts$warafter <- ifelse(successful_attempts$interwarafter == 1 | successful_attempts$civilwarafter == 1, 1, 0)
+unsuccessful_attempts$warafter <- ifelse(unsuccessful_attempts$interwarafter == 1 | unsuccessful_attempts$civilwarafter == 1, 1, 0)
+
+wars_after_success <- (sum(successful_attempts$warafter)/ total_success) * 100
+wars_after_failure <- (sum(unsuccessful_attempts$warafter)/ total_failure) * 100
+cat("The average pre-attempt polity of countries with successful assassinations was: ", success_polity, "and the average score after was: ", average_polity_after_success, "this means that countries became less democratic in the wake of successful attempts, which agrees with my hypothesis. \n\n")
+
+cat("Successful attempts resulted in wars ", wars_after_success, "% of the time which means that countries with successful attempts are relatively likely to enter into wars whereas unsuccessful attempts only resulted in wars ", wars_after_failure, "% of the time. This means that countries with unsuccessful attempts are actually more likely to experience conflict in the period after an attempt. This is oposite of what I expected in my assumption\n")
 ```
 
