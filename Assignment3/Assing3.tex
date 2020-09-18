@@ -1,0 +1,1225 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={in class\_assign3},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{in class\_assign3}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+SUCCESS OF LEADER ASSASSINATION AS A NATURAL EXPERIMENT
+
+One longstanding debate in the study of international relations concerns
+the question of whether individual political leaders can make a
+difference. Some emphasize that leaders with different ideologies and
+personalities can significantly affect the course of a nation. Others
+argue that political leaders are severely constrained by historical and
+institutional forces. Did individuals like Hitler, Mao, Roosevelt, and
+Churchill make a big difference? The difficulty of empirically testing
+these arguments stems from the fact that the change of leadership is not
+random and there are many confounding factors to be adjusted for. In
+this exercise, we consider a natural experiment in which the success or
+failure of assassination attempts is assumed to be essentially random.7
+Each observation of the CSV data set leaders.csv contains information
+about an assassination attempt. Table 2.8 presents the names and
+descriptions of variables in this leader assassination data set. The
+polity variable represents the so-called polity score from the Polity
+Project. The Polity Project systematically documents and quantifies the
+regime types of all countries in the world from 1800. The polity score
+is a 21-point scale ranging from −10 (hereditary monarchy) to 10
+(consolidated democracy). The result variable is a 10-category factor
+variable describing the result of each assassination attempt.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How many assassination attempts are recorded in the data? How many
+  countries experience at least one leader assassination attempt? (The
+  unique() function, What is the average number of such attempts (per
+  year) among these countries?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.1     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{leaders <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"leaders.csv"}\NormalTok{)}
+\NormalTok{leaders}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     year           country                  leadername age politybefore
+## 1   1929       Afghanistan            Habibullah Ghazi  39   -6.0000000
+## 2   1933       Afghanistan                  Nadir Shah  53   -6.0000000
+## 3   1934       Afghanistan                 Hashim Khan  50   -6.0000000
+## 4   1924           Albania                        Zogu  29    0.0000000
+## 5   1931           Albania                        Zogu  36   -9.0000000
+## 6   1968           Algeria                 Boumedienne  41   -9.0000000
+## 7   1992           Algeria                     Boudiaf  73   -2.0000000
+## 8   1908         Argentina                     Alcorta  48    1.0000000
+## 9   1916         Argentina                 de la Plaza  76    2.0000000
+## 10  1929         Argentina                    Irigoyen  77    2.0000000
+## 11  1976         Argentina                      Videla  51    6.0000000
+## 12  1977         Argentina                      Videla  52    1.0000000
+## 13  1916         Australia                      Hughes  52   10.0000000
+## 14  1975         Australia                      Fraser  45   10.0000000
+## 15  1920           Austria                      Renner  50    0.0000000
+## 16  1924           Austria                      Seipel  48    8.0000000
+## 17  1933           Austria                    Dollfuss  51    8.0000000
+## 18  1934           Austria                    Dollfuss  52    5.0000000
+## 19  1902           Belgium       Paul de Smet de Nayer  59    6.0000000
+## 20  1965            Bhutan       Wangchuk, Jigme Dorji  36   -8.0000000
+## 21  1945           Bolivia                  Villarroel  37   -5.0000000
+## 22  1946           Bolivia                   Gutierrez  62   -5.0000000
+## 23  1964           Bolivia           Barrientos Ortuna  45   -3.0000000
+## 24  1965           Bolivia           Barrientos Ortuna  46   -3.3333333
+## 25  1897            Brazil            de Moraes Barros  56   -3.0000000
+## 26  1994           Burundi                   Ntarymira  39   -3.3333333
+## 27  1915          Bulgaria                 Ferdinand I  54   -9.0000000
+## 28  1925          Bulgaria                   Boris III  31   -3.0000000
+## 29  1943          Bulgaria                   Boris III  49  -10.0000000
+## 30  1959          Cambodia                    Sihanouk  37   -9.0000000
+## 31  1973          Cambodia                     Lon Nol  60   -6.0000000
+## 32  1998          Cambodia                     Hun Sen  46   -1.6666667
+## 33  1995            Canada                    Chretien  56   10.0000000
+## 34  2000       Ivory Coast                        Guei  59   -4.3333333
+## 35  1976              Chad                     Malloum  44   -8.3333333
+## 36  1899             Chile      F. Errazuriz Echaurren  49    3.0000000
+## 37  1929             Chile                Ibanez Campo  52   -2.0000000
+## 38  1930             Chile            Ibanez del Campo  53   -2.0000000
+## 39  1986             Chile                    Pinochet  71   -6.0000000
+## 40  1910             China                     Zaifeng  28   -6.0000000
+## 41  1929             China             Chiang Kai-shek  43   -5.0000000
+## 42  1931             China             Chiang Kai-shek  45   -5.0000000
+## 43  1961             China                Mao Tse-Tung  68   -8.0000000
+## 44  1906          Colombia                Reyes Prieto  57   -3.3333333
+## 45  1977 Congo Brazzaville                     Ngouabi  39   -7.0000000
+## 46  1944        Costa Rica            Picado Michalski  44   10.0000000
+## 47  1931              Cuba             Machado Morales  60    1.0000000
+## 48  1934              Cuba                    Mendieta  61    1.6666667
+## 49  1970            Cyprus                    Makarios  57    4.6666667
+## 50  1954    Czechoslovakia                   Zapotocky  70   -7.0000000
+## 51  1899     Dominican Rep                    Heureaux  54   -3.0000000
+## 52  1911     Dominican Rep                     Caceres  45   -3.0000000
+## 53  1961     Dominican Rep              Rafel Trujillo  70   -9.0000000
+## 54  2001    Congo Kinshasa              Laurent Kabila  62    0.0000000
+## 55  1886           Ecuador                     Caamano  49   -1.0000000
+## 56  1949           Ecuador                 Plaza Lasso  43    0.0000000
+## 57  1938             Egypt                      Farouk  18    1.0000000
+## 58  1939             Egypt                      Farouk  19    1.0000000
+## 59  1974             Egypt                       Sadat  56   -7.0000000
+## 60  1981             Egypt                       Sadat  63   -6.0000000
+## 61  1995             Egypt                     Mubarak  66   -6.0000000
+## 62  1999             Egypt                     Mubarak  70   -6.0000000
+## 63  1978          Ethiopia            Mengistu Marriam  41   -7.0000000
+## 64  1910            France                      Briand  48    8.0000000
+## 65  1911            France                      Briand  49    8.0000000
+## 66  1919            France                  Clemenceau  78    8.0000000
+## 67  1924            France                     Herriot  52    9.0000000
+## 68  1932            France                     Herriot  60    9.6666667
+## 69  1943            France                       Laval  60   -9.0000000
+## 70  1961            France                   De Gaulle  71    5.0000000
+## 71  1962            France                   De Gaulle  72    5.0000000
+## 72  1964            France                   De Gaulle  74    5.0000000
+## 73  1965            France                   De Gaulle  75    5.0000000
+## 74  1963             Ghana                     Nkurmah  54   -8.3333333
+## 75  1964             Ghana                     Nkurmah  55   -8.6666667
+## 76  1878           Germany                   Wilhelm I  81   -4.0000000
+## 77  1939           Germany                      Hitler  50   -9.0000000
+## 78  1898            Greece                    George I  53   10.0000000
+## 79  1913            Greece                    George I  68   10.0000000
+## 80  1926            Greece                    Pangalos  48   -3.6666667
+## 81  1968            Greece                Papadopoulos  49    0.3333333
+## 82  1995           Georgia                Shevardnadze  67    4.0000000
+## 83  1998           Georgia                Shevardnadze  70    5.0000000
+## 84  1884         Guatemala        Justo Rufino Barrios  49    2.0000000
+## 85  1886         Guatemala                    Barillas  41    2.0000000
+## 86  1898         Guatemala               Reina Barrios  63   -1.3333333
+## 87  1907         Guatemala             Estrada-Cabrera  50   -9.0000000
+## 88  1908         Guatemala             Estrada-Cabrera  51   -9.0000000
+## 89  1957         Guatemala              Castillo Armas  43   -6.0000000
+## 90  1996         Guatemala               Arzu Yrigoyen  50    3.0000000
+## 91  1980            Guinea                       Toure  58   -9.0000000
+## 92  1892             Haiti                   Hippolyte  65   -3.0000000
+## 93  1912             Haiti                     Leconte  58   -3.0000000
+## 94  1947          Honduras               Carias Andino  71   -3.0000000
+## 95  1955             India                       Nehru  66    9.0000000
+## 96  1980             India                  Gandhi, I.  63    8.0000000
+## 97  1984             India                  Gandhi, I.  67    8.0000000
+## 98  1986             India                  Gandhi, R.  42    8.0000000
+## 99  1957         Indonesia                     Sukarno  56    0.0000000
+## 100 1962         Indonesia                     Sukarno  61   -5.0000000
+## 101 1896              Iran                Nasir Ad-Din  65  -10.0000000
+## 102 1896              Iran             Muzaffar ad-Din  43  -10.0000000
+## 103 1900              Iran             Muzaffar ad-Din  47  -10.0000000
+## 104 1908              Iran           Mohammed Ali Shah  36   -3.3333333
+## 105 1949              Iran               Mohammad Reza  30   -1.0000000
+## 106 1967              Iran               Mohammad Reza  48  -10.0000000
+## 107 1959              Iraq               Karrim Kassem  45   -4.3333333
+## 108 1982              Iraq              Saddam Hussein  45   -9.0000000
+## 109 1957            Israel                  Ben Gurion  71   10.0000000
+## 110 1995            Israel                       Rabin  73    9.0000000
+## 111 1923             Italy                   Mussolini  40   -1.3333333
+## 112 1924             Italy                   Mussolini  41   -2.0000000
+## 113 1925             Italy                   Mussolini  42   -3.0000000
+## 114 1926             Italy                   Mussolini  43   -4.3333333
+## 115 1928             Italy                   Mussolini  45   -7.0000000
+## 116 1932             Italy                   Mussolini  49   -9.0000000
+## 117 1949            Jordan         Abdullah Al-Hussein  67  -10.0000000
+## 118 1951            Jordan         Abdullah Al-Hussein  69  -10.0000000
+## 119 1960            Jordan Hussein Ibn Talal El-Hashim  25   -9.0000000
+## 120 1970            Jordan Hussein Ibn Talal El-Hashim  35   -9.0000000
+## 121 1972            Jordan Hussein Ibn Talal El-Hashim  37   -9.0000000
+## 122 1916             Japan                       Okuma  78    1.0000000
+## 123 1920             Japan                    Hara, T.  64    1.0000000
+## 124 1921             Japan                    Hara, T.  65    1.0000000
+## 125 1925             Japan               Kato, Takaaki  65    1.0000000
+## 126 1928             Japan                  Tanaka, G.  64    1.0000000
+## 127 1929             Japan                   Hamaguchi  59    1.0000000
+## 128 1930             Japan                   Hamaguchi  60    1.0000000
+## 129 1932             Japan                      Inukai  77    1.0000000
+## 130 1960             Japan                       Kishi  64   10.0000000
+## 131 1963             Japan                       Ikeda  64   10.0000000
+## 132 1978             Japan                       Ohira  68   10.0000000
+## 133 1972             Kenya                    Kenyatta  81   -7.0000000
+## 134 1985            Kuwait              Jabir As-Sabah  59   -8.0000000
+## 135 1955           Liberia                      Tubman  60   -6.0000000
+## 136 1956           Lebanon                     Chamoun  56    2.0000000
+## 137 1978             Libya                     Qaddafi  36   -7.0000000
+## 138 1981             Libya                     Qaddafi  39   -7.0000000
+## 139 1984             Libya                     Qaddafi  42   -7.0000000
+## 140 1975        Madagascar               Ratsimandrava  44   -3.0000000
+## 141 1890            Mexico                        Diaz  60   -9.0000000
+## 142 1897            Mexico                        Diaz  67   -9.0000000
+## 143 1920            Mexico                    Carranza  61   -1.0000000
+## 144 1921            Mexico                     Obregon  31   -1.0000000
+## 145 1925            Mexico                      Calles  48   -1.6666667
+## 146 1927            Mexico                      Calles  50   -3.0000000
+## 147 1929            Mexico                  Portes Gil  39   -3.0000000
+## 148 1930            Mexico                 Ortiz Rubio  53   -3.0000000
+## 149 1935            Mexico                    Cardenas  40   -6.0000000
+## 150 1944            Mexico               Avila Camacho  47   -6.0000000
+## 151 1952            Mexico               Aleman Valdes  49   -6.0000000
+## 152 1963   Myanmar (Burma)                      Ne Win  52    3.3333333
+## 153 1962             Nepal                    Mahendra  42   -6.0000000
+## 154 2001             Nepal                    Birendra  55    5.6666667
+## 155 1954         Nicaragua     Anastasio Somoza Garcia  58   -8.0000000
+## 156 1956         Nicaragua     Anastasio Somoza Garcia  60   -8.0000000
+## 157 1959         Nicaragua         Luis Somoza Debayle  37   -8.0000000
+## 158 1965             Niger                       Diori  49   -7.0000000
+## 159 1987       Netherlands                     Lubbers  48   10.0000000
+## 160 1966              Oman            Sa`id ibn Taimur  56  -10.0000000
+## 161 1951          Pakistan                     L. Khan  56    3.3333333
+## 162 1968          Pakistan                   Ayub Khan  61    1.0000000
+## 163 1988          Pakistan                         Zia  64   -4.0000000
+## 164 1999          Pakistan                      Sharif  50    7.3333333
+## 165 1955            Panama               Remon Cantero  47   -1.0000000
+## 166 1908              Peru             Pardo y Barreda  44    2.0000000
+## 167 1932              Peru               Sanchez Cerro  43   -6.0000000
+## 168 1933              Peru               Sanchez Cerro  44   -3.0000000
+## 169 1933              Peru                   Benavidez  57   -3.0000000
+## 170 1986              Peru                Garcia Perez  37    7.0000000
+## 171 1922            Poland                  Narutowicz  57    8.0000000
+## 172 1924            Poland               Wojciechowski  55    8.0000000
+## 173 1893          Portugal                    Carlos I  30   -4.0000000
+## 174 1896          Portugal                    Carlos I  33   -4.0000000
+## 175 1908          Portugal                    Carlos I  45   -4.3333333
+## 176 1918          Portugal                        Paes  46    7.0000000
+## 177 1937          Portugal                     Salazar  48   -9.0000000
+## 178 1952       Korea South                        Rhee  77   -3.0000000
+## 179 1968       Korea South                    Hee Park  51    3.0000000
+## 180 1974       Korea South                    Hee Park  57   -4.6666667
+## 181 1979       Korea South                    Hee Park  62   -8.0000000
+## 182 1983       Korea South               Chun Doo Hwan  52   -6.0000000
+## 183 1878            Russia                Alexander II  60  -10.0000000
+## 184 1879            Russia                Alexander II  61  -10.0000000
+## 185 1880            Russia                Alexander II  62  -10.0000000
+## 186 1881            Russia                Alexander II  63  -10.0000000
+## 187 1886            Russia               Alexander III  41  -10.0000000
+## 188 1888            Russia               Alexander III  43  -10.0000000
+## 189 1889            Russia               Alexander III  44  -10.0000000
+## 190 1904            Russia                 Nicholas II  36  -10.0000000
+## 191 1914            Russia                 Nicholas II  46   -6.0000000
+## 192 1918            Russia                       Lenin  48   -4.3333333
+## 193 1962     Vietnam South               Ngo Dinh Diem  61   -3.0000000
+## 194 1994            Rwanda                 Habyarimana  57   -6.6666667
+## 195 1960      South Africa                    Verwoerd  59    4.0000000
+## 196 1966      South Africa                    Verwoerd  65    4.0000000
+## 197 1913       El Salvador                      Araujo  48   -6.0000000
+## 198 1935      Saudi Arabia                        Aziz  53  -10.0000000
+## 199 1975      Saudi Arabia                      Faisal  70  -10.0000000
+## 200 1967           Senegal                     Senghor  61   -7.0000000
+## 201 1969           Somalia                   Shermarke  50    7.0000000
+## 202 1897             Spain                del Castillo  69    4.3333333
+## 203 1904             Spain            Maura y Montaner  51    6.0000000
+## 204 1912             Spain          Canalejas y Mendez  58    6.0000000
+## 205 1921             Spain              Dato y Iradier  65    6.0000000
+## 206 1926             Spain                   de Rivera  56   -6.6666667
+## 207 1959         Sri Lanka      Bandaranaike, S.W.R.D.  60    7.0000000
+## 208 1987         Sri Lanka                 Jayewardene  81    5.0000000
+## 209 1993         Sri Lanka                   Premadasa  69    5.0000000
+## 210 1999         Sri Lanka                 Kumaratunga  54    5.0000000
+## 211 1970             Sudan                     Nimeiri  40    5.3333333
+## 212 1986            Sweden                       Palme  59   10.0000000
+## 213 1973             Syria                 Al-Assad H.  43   -9.0000000
+## 214 1980             Syria                 Al-Assad H.  50   -9.0000000
+## 215 1963              Togo                     Olympio  61   -6.0000000
+## 216 1967              Togo                     Eyadema  53   -6.0000000
+## 217 1905            Turkey                    Hamid II  63  -10.0000000
+## 218 1906            Turkey                    Hamid II  64  -10.0000000
+## 219 1964            Turkey                       Inonu  80    9.0000000
+## 220 1975            Turkey                     Demirel  51    5.3333333
+## 221 1988            Turkey                        Ozal  61    7.0000000
+## 222 1969            Uganda                       Obote  44   -4.0000000
+## 223 1975            Uganda                        Amin  50   -7.0000000
+## 224 1976            Uganda                        Amin  51   -7.0000000
+## 225 1977            Uganda                        Amin  52   -7.0000000
+## 226 1984    United Kingdom                    Thatcher  59   10.0000000
+## 227 1886           Uruguay               Maximo Santos  39   -3.0000000
+## 228 1897           Uruguay          Juan Idiarte Borda  53   -3.0000000
+## 229 1897           Uruguay       Juan Lindolfo Cuestas  60   -3.0000000
+## 230 1918           Uruguay             Feliciano Viera  46    2.0000000
+## 231 1935           Uruguay                       Terra  62    2.0000000
+## 232 1881     United States                    Garfield  50   10.0000000
+## 233 1901     United States                    McKinley  58   10.0000000
+## 234 1933     United States               Roosevelt, F.  51   10.0000000
+## 235 1950     United States                      Truman  66   10.0000000
+## 236 1963     United States                     Kennedy  46   10.0000000
+## 237 1972     United States                       Nixon  59   10.0000000
+## 238 1975     United States                        Ford  62   10.0000000
+## 239 1981     United States                      Reagan  70   10.0000000
+## 240 1999        Uzbekistan                     Karimov  61   -9.0000000
+## 241 1900         Venezuela             Cipriano Castro  42   -3.0000000
+## 242 1931         Venezuela                       Gomez  74   -9.0000000
+## 243 1950         Venezuela            Delgado Chalbaud  41   -3.0000000
+## 244 1960         Venezuela                  Betancourt  52    3.0000000
+## 245 1961       Yemen North             Ibn Yahya Hamid  70   -6.0000000
+## 246 1968       Yemen North                   Al-Iryani  51   -2.0000000
+## 247 1977       Yemen North                   Al-Hamadi  34   -4.0000000
+## 248 1977       Yemen North                  Al-Ghashmi  38   -4.0000000
+## 249 1978       Yemen North                  Al-Ghashmi  39   -4.6666667
+## 250 1934        Yugoslavia                   Alexander  46  -10.0000000
+##     polityafter interwarbefore interwarafter civilwarbefore civilwarafter
+## 1    -6.0000000              0             0              1             0
+## 2    -7.3333333              0             0              0             0
+## 3    -8.0000000              0             0              0             0
+## 4    -9.0000000              0             0              0             0
+## 5    -9.0000000              0             0              0             0
+## 6    -9.0000000              0             0              0             0
+## 7    -5.6666667              0             0              0             1
+## 8     1.0000000              0             0              0             0
+## 9     2.0000000              0             0              0             0
+## 10   -8.0000000              0             0              0             0
+## 11   -9.0000000              0             0              0             0
+## 12   -9.0000000              0             0              0             0
+## 13   10.0000000              1             1              0             0
+## 14   10.0000000              1             0              0             0
+## 15    8.0000000              1             0              0             0
+## 16    8.0000000              0             0              0             0
+## 17   -9.0000000              0             0              0             1
+## 18   -9.0000000              0             0              0             0
+## 19    6.0000000              0             0              0             0
+## 20   -8.0000000              0             0              0             0
+## 21   -5.0000000              0             0              0             0
+## 22   -5.0000000              0             0              0             0
+## 23   -4.0000000              0             0              0             0
+## 24   -4.0000000              0             0              0             0
+## 25   -3.0000000              0             0              1             0
+## 26   -3.3333333              0             0              1             1
+## 27   -5.3333333              1             1              0             0
+## 28   -3.0000000              0             0              1             0
+## 29   -4.0000000              1             1              0             0
+## 30   -9.0000000              0             0              0             0
+## 31   -4.0000000              1             1              1             1
+## 32    2.0000000              0             0              1             0
+## 33   10.0000000              0             0              0             0
+## 34    1.3333333              0             0              0             0
+## 35   -3.3333333              0             0              0             0
+## 36    3.0000000              0             0              0             0
+## 37   -2.0000000              0             0              0             0
+## 38   -2.0000000              0             0              0             0
+## 39    0.3333333              0             0              0             0
+## 40   -0.6666667              0             0              0             1
+## 41   -5.0000000              0             1              1             1
+## 42   -5.0000000              1             1              1             1
+## 43   -8.0000000              0             1              1             0
+## 44   -5.0000000              0             0              1             0
+## 45   -7.6666667              0             0              0             0
+## 46   10.0000000              0             0              0             0
+## 47    2.3333333              0             0              0             0
+## 48    3.0000000              0             0              0             0
+## 49    7.0000000              0             0              0             0
+## 50   -7.0000000              0             0              0             0
+## 51   -3.0000000              0             0              0             0
+## 52   -3.0000000              0             0              0             0
+## 53    2.6666667              0             0              0             0
+## 54    0.0000000              0             0              1             0
+## 55   -1.0000000              0             0              0             0
+## 56    2.0000000              0             0              0             0
+## 57    1.0000000              0             0              0             0
+## 58    1.0000000              0             0              0             0
+## 59   -6.3333333              1             0              0             0
+## 60   -6.0000000              0             0              0             0
+## 61   -6.0000000              0             0              0             0
+## 62   -6.0000000              0             0              0             0
+## 63   -7.0000000              1             0              1             1
+## 64    8.0000000              0             0              1             1
+## 65    8.0000000              0             1              1             0
+## 66    9.0000000              1             1              1             0
+## 67    9.0000000              1             0              0             0
+## 68   10.0000000              0             0              0             0
+## 69    3.6666667              1             1              0             0
+## 70    5.0000000              0             0              0             0
+## 71    5.0000000              0             0              0             0
+## 72    5.0000000              0             0              0             0
+## 73    5.0000000              0             0              0             0
+## 74   -8.3333333              0             0              0             0
+## 75   -7.6666667              0             0              0             0
+## 76   -4.0000000              0             0              0             0
+## 77   -9.0000000              0             1              1             0
+## 78   10.0000000              1             0              0             0
+## 79    5.5000000              1             0              0             0
+## 80   10.0000000              0             0              0             0
+## 81   -7.0000000              0             0              0             0
+## 82    5.0000000              0             0              1             0
+## 83    5.0000000              0             0              0             0
+## 84    2.0000000              0             1              0             0
+## 85    2.0000000              1             0              0             0
+## 86   -5.3333333              0             0              0             0
+## 87   -9.0000000              1             0              0             0
+## 88   -9.0000000              1             0              0             0
+## 89   -5.0000000              0             0              1             0
+## 90    8.0000000              0             0              0             0
+## 91   -9.0000000              0             0              0             0
+## 92   -3.0000000              0             0              0             0
+## 93   -3.0000000              0             0              0             0
+## 94   -3.0000000              0             0              0             0
+## 95    9.0000000              0             0              0             0
+## 96    8.0000000              0             0              0             0
+## 97    8.0000000              0             0              0             1
+## 98    8.0000000              0             0              1             1
+## 99   -3.6666667              0             0              1             1
+## 100  -5.0000000              0             0              1             0
+## 101 -10.0000000              0             0              0             0
+## 102 -10.0000000              0             0              0             0
+## 103 -10.0000000              0             0              0             0
+## 104   0.0000000              0             0              0             1
+## 105  -1.0000000              0             0              0             0
+## 106 -10.0000000              0             0              0             0
+## 107  -5.0000000              0             0              0             1
+## 108  -9.0000000              1             1              0             1
+## 109  10.0000000              1             0              0             0
+## 110   9.0000000              0             0              0             0
+## 111  -5.6666667              0             0              0             0
+## 112  -7.0000000              0             0              0             0
+## 113  -8.0000000              0             0              0             0
+## 114  -8.6666667              0             0              0             0
+## 115  -9.0000000              0             0              0             0
+## 116  -9.0000000              0             1              0             0
+## 117  -5.0000000              1             0              0             0
+## 118  -1.0000000              1             0              0             0
+## 119  -9.0000000              0             0              0             0
+## 120  -9.0000000              1             1              0             0
+## 121  -9.6666667              0             1              1             0
+## 122   1.0000000              1             1              0             1
+## 123   1.0000000              1             0              1             0
+## 124   1.0000000              1             0              1             0
+## 125   1.0000000              0             0              0             1
+## 126   1.0000000              0             1              1             0
+## 127   1.0000000              0             1              1             0
+## 128   1.0000000              0             1              1             0
+## 129   1.0000000              1             1              0             0
+## 130  10.0000000              0             0              0             0
+## 131  10.0000000              0             0              0             0
+## 132  10.0000000              0             0              0             0
+## 133  -7.0000000              0             0              0             0
+## 134 -10.0000000              0             0              0             0
+## 135  -6.0000000              0             0              0             0
+## 136   2.0000000              0             0              0             1
+## 137  -7.0000000              0             1              0             0
+## 138  -7.0000000              1             0              0             1
+## 139  -7.0000000              0             0              1             1
+## 140  -6.0000000              0             0              0             0
+## 141  -9.0000000              0             0              0             0
+## 142  -9.0000000              0             0              0             0
+## 143  -1.0000000              0             0              1             1
+## 144  -1.6666667              0             0              1             1
+## 145  -3.0000000              0             0              1             1
+## 146  -4.0000000              0             0              1             1
+## 147  -6.0000000              0             0              1             1
+## 148  -6.0000000              0             0              1             0
+## 149  -6.0000000              0             0              0             0
+## 150  -6.0000000              0             0              0             0
+## 151  -6.0000000              0             0              0             0
+## 152  -7.0000000              0             0              0             0
+## 153  -9.0000000              0             0              0             0
+## 154  -6.0000000              0             0              0             1
+## 155  -8.0000000              0             0              0             0
+## 156  -8.0000000              0             0              0             0
+## 157  -8.0000000              0             0              0             0
+## 158  -7.0000000              0             0              0             0
+## 159  10.0000000              0             0              0             0
+## 160 -10.0000000              0             0              0             0
+## 161   5.0000000              1             0              0             0
+## 162   0.3333333              1             1              0             1
+## 163   8.0000000              0             0              0             0
+## 164  -5.6666667              0             0              0             0
+## 165   4.0000000              0             0              0             0
+## 166   2.0000000              0             0              0             0
+## 167   2.0000000              0             0              0             0
+## 168   2.0000000              0             0              1             0
+## 169   2.0000000              0             0              1             0
+## 170   7.0000000              0             0              1             1
+## 171   8.0000000              1             0              0             0
+## 172   0.6666667              0             0              0             0
+## 173  -4.0000000              0             0              0             0
+## 174  -4.0000000              0             0              0             0
+## 175   4.6666667              0             0              0             0
+## 176   7.0000000              1             0              0             0
+## 177  -9.0000000              0             0              1             1
+## 178  -4.0000000              1             1              0             0
+## 179   3.0000000              1             1              0             0
+## 180  -8.0000000              1             0              0             0
+## 181  -6.0000000              0             0              0             0
+## 182  -5.0000000              0             0              0             0
+## 183 -10.0000000              1             0              0             0
+## 184 -10.0000000              1             0              0             0
+## 185 -10.0000000              1             0              0             0
+## 186 -10.0000000              1             0              0             0
+## 187 -10.0000000              0             0              0             0
+## 188 -10.0000000              0             0              0             0
+## 189 -10.0000000              0             0              0             0
+## 190  -6.6666667              0             1              0             1
+## 191  -4.3333333              0             1              0             1
+## 192  -1.0000000              1             1              1             1
+## 193  -3.0000000              0             1              1             1
+## 194  -6.0000000              0             0              1             1
+## 195   4.0000000              0             0              0             0
+## 196   4.0000000              0             0              0             0
+## 197  -6.0000000              0             0              0             0
+## 198 -10.0000000              1             0              0             0
+## 199 -10.0000000              1             0              0             0
+## 200  -7.0000000              0             0              0             0
+## 201  -7.0000000              0             0              0             0
+## 202   4.6666667              0             1              0             0
+## 203   6.0000000              0             0              0             0
+## 204   6.0000000              1             0              0             0
+## 205  -2.6666667              0             0              0             0
+## 206  -6.0000000              0             0              0             0
+## 207   7.0000000              0             0              0             0
+## 208   5.0000000              0             0              1             0
+## 209   5.0000000              0             0              0             1
+## 210   5.6666667              0             0              1             1
+## 211  -7.0000000              0             0              1             1
+## 212  10.0000000              0             0              0             0
+## 213  -9.0000000              0             0              1             1
+## 214  -9.0000000              0             1              1             1
+## 215  -6.0000000              0             0              0             0
+## 216  -7.0000000              0             0              0             0
+## 217  -8.0000000              0             0              1             0
+## 218  -5.0000000              0             0              1             0
+## 219   8.0000000              0             0              0             0
+## 220   9.0000000              1             0              0             0
+## 221   9.0000000              0             0              0             1
+## 222  -7.0000000              0             0              1             0
+## 223  -7.0000000              0             1              0             0
+## 224  -7.0000000              0             1              0             0
+## 225  -2.0000000              0             1              0             1
+## 226  10.0000000              1             0              0             0
+## 227  -3.0000000              0             0              0             0
+## 228  -3.0000000              0             0              0             0
+## 229  -3.0000000              0             0              0             0
+## 230   3.0000000              0             0              0             0
+## 231   0.0000000              0             0              0             0
+## 232  10.0000000              0             0              0             0
+## 233  10.0000000              1             0              0             0
+## 234  10.0000000              0             0              0             0
+## 235  10.0000000              0             1              0             0
+## 236  10.0000000              0             1              1             1
+## 237  10.0000000              1             1              1             1
+## 238  10.0000000              1             0              1             0
+## 239  10.0000000              0             0              0             0
+## 240  -9.0000000              0             0              0             0
+## 241  -3.0000000              0             0              1             1
+## 242  -9.0000000              0             0              0             0
+## 243  -3.0000000              0             0              0             0
+## 244   6.0000000              0             0              0             0
+## 245   0.0000000              0             0              0             1
+## 246  -3.0000000              0             0              1             1
+## 247  -6.0000000              0             0              0             0
+## 248  -6.0000000              0             0              0             0
+## 249  -6.0000000              0             0              0             0
+## 250  -7.6666667              0             0              0             0
+##                                          result
+## 1                                   not wounded
+## 2            dies within a day after the attack
+## 3             survives, whether wounded unknown
+## 4                               wounded lightly
+## 5                                   not wounded
+## 6                               wounded lightly
+## 7            dies within a day after the attack
+## 8                                  plot stopped
+## 9                                   not wounded
+## 10                                  not wounded
+## 11                                  not wounded
+## 12                                  not wounded
+## 13            survives, whether wounded unknown
+## 14                                 plot stopped
+## 15                                  not wounded
+## 16  hospitalization but no permanent disability
+## 17  hospitalization but no permanent disability
+## 18           dies within a day after the attack
+## 19                                  not wounded
+## 20                                  not wounded
+## 21                                  not wounded
+## 22                                 plot stopped
+## 23  hospitalization but no permanent disability
+## 24  hospitalization but no permanent disability
+## 25                                  not wounded
+## 26           dies within a day after the attack
+## 27            survives, whether wounded unknown
+## 28                              wounded lightly
+## 29                dies between a day and a week
+## 30                                  not wounded
+## 31                                  not wounded
+## 32                                  not wounded
+## 33                                 plot stopped
+## 34                                  not wounded
+## 35                                  not wounded
+## 36                                 plot stopped
+## 37                                 plot stopped
+## 38                                 plot stopped
+## 39                              wounded lightly
+## 40            survives, whether wounded unknown
+## 41                                 plot stopped
+## 42                                  not wounded
+## 43            survives, whether wounded unknown
+## 44                                  not wounded
+## 45           dies within a day after the attack
+## 46            survives, whether wounded unknown
+## 47            survives, whether wounded unknown
+## 48                              wounded lightly
+## 49                                  not wounded
+## 50                              wounded lightly
+## 51           dies within a day after the attack
+## 52           dies within a day after the attack
+## 53           dies within a day after the attack
+## 54           dies within a day after the attack
+## 55                                  not wounded
+## 56                                  not wounded
+## 57                                  not wounded
+## 58                                 plot stopped
+## 59                                  not wounded
+## 60           dies within a day after the attack
+## 61                                  not wounded
+## 62                              wounded lightly
+## 63                              wounded lightly
+## 64                              wounded lightly
+## 65                                  not wounded
+## 66  hospitalization but no permanent disability
+## 67                                  not wounded
+## 68                                 plot stopped
+## 69                              wounded lightly
+## 70                                  not wounded
+## 71                                  not wounded
+## 72                                 plot stopped
+## 73                                 plot stopped
+## 74                              wounded lightly
+## 75                                  not wounded
+## 76                                  not wounded
+## 77                                  not wounded
+## 78                                  not wounded
+## 79           dies within a day after the attack
+## 80                                 plot stopped
+## 81                                  not wounded
+## 82                              wounded lightly
+## 83                                  not wounded
+## 84                              wounded lightly
+## 85                                 plot stopped
+## 86                         dies, timing unknown
+## 87                                  not wounded
+## 88                              wounded lightly
+## 89           dies within a day after the attack
+## 90                                  not wounded
+## 91                                  not wounded
+## 92                                 plot stopped
+## 93           dies within a day after the attack
+## 94                                 plot stopped
+## 95                                 plot stopped
+## 96                                  not wounded
+## 97           dies within a day after the attack
+## 98                                  not wounded
+## 99                                  not wounded
+## 100                                 not wounded
+## 101          dies within a day after the attack
+## 102                                 not wounded
+## 103                                plot stopped
+## 104                                 not wounded
+## 105                             wounded lightly
+## 106                                 not wounded
+## 107 hospitalization but no permanent disability
+## 108                                 not wounded
+## 109                             wounded lightly
+## 110          dies within a day after the attack
+## 111                                 not wounded
+## 112           survives, whether wounded unknown
+## 113                                plot stopped
+## 114 hospitalization but no permanent disability
+## 115                                plot stopped
+## 116                                plot stopped
+## 117                                plot stopped
+## 118          dies within a day after the attack
+## 119                                 not wounded
+## 120                                 not wounded
+## 121 hospitalization but no permanent disability
+## 122                                 not wounded
+## 123           survives, whether wounded unknown
+## 124          dies within a day after the attack
+## 125                                 not wounded
+## 126                                plot stopped
+## 127                                plot stopped
+## 128               survives but wounded severely
+## 129          dies within a day after the attack
+## 130                             wounded lightly
+## 131           survives, whether wounded unknown
+## 132                                plot stopped
+## 133                                plot stopped
+## 134                             wounded lightly
+## 135                                 not wounded
+## 136                                plot stopped
+## 137                                 not wounded
+## 138                             wounded lightly
+## 139                                 not wounded
+## 140                        dies, timing unknown
+## 141                                 not wounded
+## 142                                 not wounded
+## 143                        dies, timing unknown
+## 144                                plot stopped
+## 145                                plot stopped
+## 146                                 not wounded
+## 147                                 not wounded
+## 148 hospitalization but no permanent disability
+## 149                                plot stopped
+## 150                                 not wounded
+## 151                                plot stopped
+## 152 hospitalization but no permanent disability
+## 153                                 not wounded
+## 154          dies within a day after the attack
+## 155                                plot stopped
+## 156             dies between a week and a month
+## 157                                 not wounded
+## 158                                 not wounded
+## 159                                 not wounded
+## 160                                 not wounded
+## 161          dies within a day after the attack
+## 162                                 not wounded
+## 163          dies within a day after the attack
+## 164                                 not wounded
+## 165          dies within a day after the attack
+## 166                                 not wounded
+## 167 hospitalization but no permanent disability
+## 168          dies within a day after the attack
+## 169                                plot stopped
+## 170                                 not wounded
+## 171          dies within a day after the attack
+## 172                                 not wounded
+## 173                                 not wounded
+## 174                                 not wounded
+## 175          dies within a day after the attack
+## 176          dies within a day after the attack
+## 177                                 not wounded
+## 178                                 not wounded
+## 179                                 not wounded
+## 180                                 not wounded
+## 181          dies within a day after the attack
+## 182                                 not wounded
+## 183           survives, whether wounded unknown
+## 184                                 not wounded
+## 185                                 not wounded
+## 186          dies within a day after the attack
+## 187           survives, whether wounded unknown
+## 188                                 not wounded
+## 189           survives, whether wounded unknown
+## 190                                plot stopped
+## 191                                 not wounded
+## 192 hospitalization but no permanent disability
+## 193                                 not wounded
+## 194          dies within a day after the attack
+## 195 hospitalization but no permanent disability
+## 196          dies within a day after the attack
+## 197               dies between a day and a week
+## 198                                 not wounded
+## 199          dies within a day after the attack
+## 200                                plot stopped
+## 201          dies within a day after the attack
+## 202          dies within a day after the attack
+## 203                             wounded lightly
+## 204          dies within a day after the attack
+## 205          dies within a day after the attack
+## 206                                 not wounded
+## 207          dies within a day after the attack
+## 208                                 not wounded
+## 209          dies within a day after the attack
+## 210 hospitalization but no permanent disability
+## 211           survives, whether wounded unknown
+## 212          dies within a day after the attack
+## 213 hospitalization but no permanent disability
+## 214                                 not wounded
+## 215          dies within a day after the attack
+## 216                             wounded lightly
+## 217                                 not wounded
+## 218 hospitalization but no permanent disability
+## 219                                 not wounded
+## 220                             wounded lightly
+## 221                             wounded lightly
+## 222 hospitalization but no permanent disability
+## 223                                 not wounded
+## 224                                 not wounded
+## 225                                plot stopped
+## 226                                 not wounded
+## 227 hospitalization but no permanent disability
+## 228          dies within a day after the attack
+## 229                                plot stopped
+## 230                                 not wounded
+## 231                             wounded lightly
+## 232          dies within a day after the attack
+## 233             dies between a week and a month
+## 234                                 not wounded
+## 235                                 not wounded
+## 236          dies within a day after the attack
+## 237                                plot stopped
+## 238                                 not wounded
+## 239 hospitalization but no permanent disability
+## 240                                 not wounded
+## 241                                 not wounded
+## 242                                plot stopped
+## 243          dies within a day after the attack
+## 244                             wounded lightly
+## 245 hospitalization but no permanent disability
+## 246                                 not wounded
+## 247                        dies, timing unknown
+## 248                                plot stopped
+## 249          dies within a day after the attack
+## 250          dies within a day after the attack
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ncol}\NormalTok{(leaders)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(leaders)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 250
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{##250 attempts were recorded in this data set}
+\KeywordTok{class}\NormalTok{(leaders)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{unique_countries <-}\StringTok{ }\KeywordTok{table}\NormalTok{(}\KeywordTok{unique}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{country))}
+\KeywordTok{cat}\NormalTok{(}\StringTok{"Assassination attempts occurred in a total of "}\NormalTok{, }\KeywordTok{nrow}\NormalTok{(unique_countries), }\StringTok{"unique countries.}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Assassination attempts occurred in a total of  88 unique countries.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{average_attempts_year <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{table}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{year))}
+
+\KeywordTok{cat}\NormalTok{(}\StringTok{"There were an average of "}\NormalTok{,average_attempts_year, }\StringTok{"assassination attempts per year.}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There were an average of  2.45098 assassination attempts per year.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{success <-}\StringTok{ }\KeywordTok{c}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Create a new binary variable named success that is equal to 1 if a
+  leader dies from the attack and 0 if the leader survives. Store this
+  new variable as part of the original data frame. What is the overall
+  success rate of leader assassination? Does the result speak to the
+  validity of the assumption that the success of assassination attempts
+  is randomly determined?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(leaders)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{leaders}\OperatorTok{$}\NormalTok{result <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{result)}
+
+\NormalTok{leaders}\OperatorTok{$}\NormalTok{result_bin <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{result }\OperatorTok{==}\StringTok{ "dies within a day after the attack"} \OperatorTok{|}\StringTok{ }\NormalTok{leaders}\OperatorTok{$}\NormalTok{result }\OperatorTok{==}\StringTok{ "dies between a day and a week"} \OperatorTok{|}\StringTok{ }\NormalTok{leaders}\OperatorTok{$}\NormalTok{result }\OperatorTok{==}\StringTok{ "dies between a week and a month"} \OperatorTok{|}\StringTok{ }\NormalTok{leaders}\OperatorTok{$}\NormalTok{result }\OperatorTok{==}\StringTok{ "dies, timing unknown"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{success_rate <-}\StringTok{  }\NormalTok{(}\KeywordTok{sum}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{result_bin) }\OperatorTok{/}\StringTok{ }\KeywordTok{nrow}\NormalTok{(leaders)) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+
+\NormalTok{(success_rate)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 21.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total_success <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{result_bin)}
+
+\NormalTok{total_failure <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(leaders) }\OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{result_bin)}
+
+\NormalTok{successful_attempts <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(leaders, leaders}\OperatorTok{$}\NormalTok{result_bin }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+
+
+\NormalTok{unsuccessful_attempts <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(leaders, leaders}\OperatorTok{$}\NormalTok{result_bin }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\CommentTok{##This success rate, to an extent, implies that the success is randomly determined. If the success rate was much higher, we could assume that their were other factors making this the case. For us to truly determine to the random nature of this study, I believe that we would need much more information. }
+
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The overall success rate of assassination attempts was "}\NormalTok{, (total_success }\OperatorTok{/}\StringTok{ }\KeywordTok{nrow}\NormalTok{(leaders)) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{, }\StringTok{"%}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The overall success rate of assassination attempts was  21.6 %
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Investigate whether the average polity score over three years prior to
+  an assassination attempt differs on average between successful and
+  failed attempts. Also, examine whether there is any difference in the
+  age of targeted leaders between successful and failed attempts.
+  Briefly interpret the results in light of the validity of the
+  aforementioned assumption.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{failure_polity <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(unsuccessful_attempts}\OperatorTok{$}\NormalTok{politybefore)}
+
+\NormalTok{success_polity <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(successful_attempts}\OperatorTok{$}\NormalTok{politybefore)}
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The average polity before the attempt for successful attempts was,"}\NormalTok{, success_polity, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The average polity before the attempt for successful attempts was, -0.7037037
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The average polity before the attempt for failed attempts was,"}\NormalTok{, failure_polity, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The average polity before the attempt for failed attempts was, -1.743197
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{success_age <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(unsuccessful_attempts}\OperatorTok{$}\NormalTok{age)}
+
+\NormalTok{failure_age <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(successful_attempts}\OperatorTok{$}\NormalTok{age)}
+
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The average age before the attempt for successful attempts was,"}\NormalTok{, success_age, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The average age before the attempt for successful attempts was, 52.71429
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The average age before the attempt for failed attempts was,"}\NormalTok{, failure_age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The average age before the attempt for failed attempts was, 56.46296
+\end{verbatim}
+
+It appears that the more unstable a country is, the less likely a
+successful assassination attempt would become. Additionally, it appears
+that the older a leader is, the more likely they are to survive an
+assassination attempt. This could be result of leadershp experience or
+control of country, rather than simply by age.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Repeat the same analysis as in the previous question, but this time
+  using the country's experience of civil and international war. Create
+  a new binary variable in the data frame called warbefore. Code the
+  variable such that it is equal to 1 if a country is in either civil or
+  international war during the three years prior to an assassination
+  attempt. Provide a brief interpretation of the result.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{leaders}\OperatorTok{$}\NormalTok{warbefore <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(leaders}\OperatorTok{$}\NormalTok{interwarbefore }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{leaders}\OperatorTok{$}\NormalTok{civilwarbefore }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{successful_attempts}\OperatorTok{$}\NormalTok{warbefore <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(successful_attempts}\OperatorTok{$}\NormalTok{interwarbefore }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{successful_attempts}\OperatorTok{$}\NormalTok{civilwarbefore }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{unsuccessful_attempts}\OperatorTok{$}\NormalTok{warbefore <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(unsuccessful_attempts}\OperatorTok{$}\NormalTok{interwarbefore }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{unsuccessful_attempts}\OperatorTok{$}\NormalTok{civilwarbefore }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{(total_warbefore_successful <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(successful_attempts}\OperatorTok{$}\NormalTok{warbefore))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(total_warbefore_unsuccessful <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(unsuccessful_attempts}\OperatorTok{$}\NormalTok{warbefore))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 73
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{perc_success <-}\StringTok{ }\NormalTok{(total_warbefore_successful }\OperatorTok{/}\StringTok{ }\NormalTok{total_success) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+
+\NormalTok{perc_unsuccess <-}\StringTok{ }\NormalTok{(total_warbefore_unsuccessful }\OperatorTok{/}\StringTok{ }\NormalTok{total_failure) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+
+\NormalTok{peace_before_successful <-}\StringTok{ }
+
+\KeywordTok{cat}\NormalTok{(}\StringTok{"Wars were occurring before"}\NormalTok{, total_warbefore_successful, }\StringTok{"out of "}\NormalTok{, total_success, }\StringTok{"successful attempts which comes to "}\NormalTok{, perc_success, }\StringTok{"% of the time}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Wars were occurring before 19 out of  54 successful attempts which comes to  35.18519 % of the time
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"Wars were occurring before"}\NormalTok{, total_warbefore_unsuccessful, }\StringTok{"out of"}\NormalTok{, total_failure, }\StringTok{"unsuccessful attempt, which comes to"}\NormalTok{, perc_unsuccess, }\StringTok{"% of the time}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Wars were occurring before 73 out of 196 unsuccessful attempt, which comes to 37.2449 % of the time
+\end{verbatim}
+
+This means that assassination attempts that occurred after a war had
+been raging, there was a slightly higher chance of the attempt being
+unsuccessful.Ultimately this means that an assassination attempt
+occurring in the wake of a period of peace actually has a slightly
+higher chance of success.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Does successful leader assassination cause democratization? Does
+  successful leader assassination lead countries to war? When analyzing
+  these data, be sure to state your assumptions and provide a brief
+  interpretation of the results.
+\end{enumerate}
+
+I would assume that leader assassinations do not cause democratization
+and will likely lead countries to civil wars.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{average_polity_after_success <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(successful_attempts}\OperatorTok{$}\NormalTok{polityafter)}
+
+\NormalTok{successful_attempts}\OperatorTok{$}\NormalTok{warafter <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(successful_attempts}\OperatorTok{$}\NormalTok{interwarafter }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{successful_attempts}\OperatorTok{$}\NormalTok{civilwarafter }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{unsuccessful_attempts}\OperatorTok{$}\NormalTok{warafter <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(unsuccessful_attempts}\OperatorTok{$}\NormalTok{interwarafter }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{unsuccessful_attempts}\OperatorTok{$}\NormalTok{civilwarafter }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{wars_after_success <-}\StringTok{ }\NormalTok{(}\KeywordTok{sum}\NormalTok{(successful_attempts}\OperatorTok{$}\NormalTok{warafter)}\OperatorTok{/}\StringTok{ }\NormalTok{total_success) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+\NormalTok{wars_after_failure <-}\StringTok{ }\NormalTok{(}\KeywordTok{sum}\NormalTok{(unsuccessful_attempts}\OperatorTok{$}\NormalTok{warafter)}\OperatorTok{/}\StringTok{ }\NormalTok{total_failure) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+\KeywordTok{cat}\NormalTok{(}\StringTok{"The average pre-attempt polity of countries with successful assassinations was: "}\NormalTok{, success_polity, }\StringTok{"and the average score after was: "}\NormalTok{, average_polity_after_success, }\StringTok{"this means that countries became less democratic in the wake of successful attempts, which agrees with my hypothesis. }\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The average pre-attempt polity of countries with successful assassinations was:  -0.7037037 and the average score after was:  -0.7623457 this means that countries became less democratic in the wake of successful attempts, which agrees with my hypothesis.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"Successful attempts resulted in wars "}\NormalTok{, wars_after_success, }\StringTok{"% of the time which means that countries with successful attempts are relatively likely to enter into wars whereas unsuccessful attempts only resulted in wars "}\NormalTok{, wars_after_failure, }\StringTok{"% of the time. This means that countries with unsuccessful attempts are actually more likely to experience conflict in the period after an attempt. This is oposite of what I expected in my assumption}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Successful attempts resulted in wars  20.37037 % of the time which means that countries with successful attempts are relatively likely to enter into wars whereas unsuccessful attempts only resulted in wars  29.59184 % of the time. This means that countries with unsuccessful attempts are actually more likely to experience conflict in the period after an attempt. This is oposite of what I expected in my assumption
+\end{verbatim}
+
+\end{document}
