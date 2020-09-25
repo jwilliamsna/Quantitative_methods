@@ -84,7 +84,7 @@ We proceed to explore the national-level differences in attitudes towards domest
 ## Answer 3
 
 ```{r}
-boxplot(beat_burnfood ~ region,data = dhs,
+boxplot(beat_burnfood ~ region, data = dhs,
         main = "Burning food",
         ylab = "Approval of beating because of burning food",
         xlab = "Region")
@@ -93,6 +93,11 @@ boxplot(dhs$no_media ~ region, data = dhs,
                 main = "Media Presence",
                 xlab = "Region",
                 ylab = "Media Availability")
+
+boxplot(dhs$sec_school ~ region, data = dhs,
+                main = "Education Level",
+                xlab = "Region",
+                ylab = "Education level")
 
 boxplot(dhs$sec_school ~ region, data = dhs,
                 main = "Education Level",
