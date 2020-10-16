@@ -1,5 +1,6 @@
 ---
 title: "Prediction Based on Betting Markets"
+name: Jacob Williams 
 output: pdf_document
 ---
 
@@ -160,46 +161,7 @@ for (i in 1:51) {
 
 
 ```{r}
-##Removing NA's
-for (i in 1:50) {
-  if (is.na(day_before_2012$PriceD[i]) == TRUE) {
-    day_before_2012$PriceD[i] <- 0
-  }
-  if (is.na(day_before_2012$PriceR[i]) == TRUE) {
-    day_before_2012$PriceR[i] <- 0
-  }
-}
 
-for (i in 1:50) {
-  if (day_before_2012$PriceD[i] - day_before_2012$PriceR[i] >= 0) {
-    #cat("Price D is: ", day_before_2008$PriceD[i], "\n")
-    day_before_2012$priceprediction[i] <- "Obama"
-  } else {
-    #cat("Price D is: ", day_before_2008$PriceD[i], "\n")
-    day_before_2012$priceprediction[i] <- "Romney"
-  }
-}
-
-for (i in 1:50) {
-  if (day_before_2012$Obama[i] >= day_before_2012$Romney[i]) {
-    day_before_2012$pollprediction[i] <- "Obama"
-  } else {
-    day_before_2012$pollprediction[i] <- "Romney"
-  }
-}
-
-for (i in 1:50) {
-  if (day_before_2012$pollprediction[i] == day_before_2012$priceprediction[i]) {
-    day_before_2012$is_accurate[i] <- 1
-  } else {
-    day_before_2012$is_accurate[i] <- 0
-  }
-}
-
-for (i in 1:50) {
-  if (day_before_2012$is_accurate[i] == 0)
-    cat("In 2012", day_before_2012$statename[i], "was incorrect", "\n")
-}
 ```
 
 
@@ -320,6 +282,36 @@ Repeat the previous exercise but this time use the seven-day
   given day.
   
 ## Answer 3
+```{r sinno_sent}
+par(cex = 1.25)
+## Empty vectors to store predictions
+Obama.predEV <- rep(NA, 90)
+for (i in 1:90) {
+## Subset 7 days around day i
+    week.data <- subset(year_2008,
+                        subset = (DaysToElection <= (90 - i + 7)) &
+                                  (DaysToElection > (90 - i)))
+## Take average price margin within each state
+## Bind this to the number of EV for each state
+    week.means <- cbind(tapply(week.data$obama.intmarg,
+                              week.data$state, mean, na.rm = TRUE),
+                        tapply(week.data$EV, week.data$state,
+                                mean, na.rm = TRUE))
+## Subset only states where Obama is predicted to win
+    week.obwin <- week.means[week.means[, 1] > 0, ]
+## Sum Obama's predicted EV on a given day
+    Obama.predEV[i] <- sum(week.obwin[, 2])
+}
+## Plot Predicted Electoral Votes from intrade
+plot(90:1, Obama.predEV,
+main = "7-Day Average Predicted Obama Electoral Votes",
+xlab = "Days to Election", ylab = "Predicted Electoral Votes",
+xlim = c(90, -1), ylim = c(260, 380))
+points(0, 365, pch = 19)
+abline(v = 0)
+abline(h = 365, lty = "dashed")
+text(80, 368, "Actual Result")
+```
 
 ```{r}
 ## I also mentioned the classification in lecture to Identify states misclassified states
@@ -331,21 +323,29 @@ for (i in 1:90) {
 
     ## Subset by i days to the election    
 
-    daily.data  <- subset(year_2008,   subset =  (DaysToElection = i | DaysToElection <= i - 7))
+    week.data  <- subset(year_2008,   subset =  (DaysToElection <= (90 - i + 7)) & (DaysToElection > 90 - i))
 
     ## Sum Obama's EV for states with positive price margins   
 
     Obama.7day[i] <-  sum(daily.data$EV[daily.data$obama.intmarg > 0])
+week.means <- cbind(tapply(week.data$obama.intmarg, 
+                           week.data$state, mean, na.rm = TRUE),
+                    tapply(week.data$EV, week.data$state,
+                           mean, na.rm = TRUE))
+
+week.obwin <- week.means[week.means[, 1] > 0, ]
+
+Obama.7day[i] <- sum(week.obwin[, ])
 }
 ## Plot Predicted Electoral Votes from Intrade 
-plot(1:90, Obama.7day,
-     main = "Daily Predicted Obama Electoral Votes",
-     xlab = "Days to Election", ylab = "Predicted Electoral Votes",
-     xlim = c(90, -1), ylim = c(260, 380))
+plot(90:1, Obama.predEV,
+main = "7-Day Average Predicted Obama Electoral Votes",
+xlab = "Days to Election", ylab = "Predicted Electoral Votes",
+xlim = c(90, -1), ylim = c(260, 380))
 points(0, 365, pch = 19)
 abline(v = 0)
 abline(h = 365, lty = "dashed")
-text(80, 370, "Actual Result")
+text(80, 368, "Actual Result")
 ```
 
 
@@ -365,8 +365,87 @@ Create a similar plot for 2008 state-wide poll predictions using
 ## Answer 4
 
 ```{r}
+pollspres <- merge(polls_2008, election_2008, by = "state")
+pollspres$margin <- pollspres$Obama.x - pollspres$McCain.x
+
+pollspres$Daystoelection2008 <- as.Date("2008-11-04") - as.Date(pollspres$middate)
+
+Obama_pols <- rep(NA, 90)
+
+states <- unique(pollspres$state.name)
+
+
+
+for (i in 1:90) {
+  counter <- 0
+  temp_df <- subset(pollspres, subset = (Daystoelection2008 >=  i)) # here you need it to be >=i
+  for (j in 1:51) {
+    bystate <- subset(temp_df, subset = (state.name == states[j]))  
+    bystate <- subset(temp_df, subset = (Daystoelection2008 == min(bystate$Daystoelection2008, na.rm = TRUE)))
+    if(mean(bystate$margin) > 0) {
+      counter <- counter + mean(bystate$EV) #here you want to update the counter itself too like so counter <- counter + mean(bystate$EV) }
+  }}}
+
 
 ```
+Obama was projected to win `r counter` votes based on these predictions. 
+
+## Question 5
+
+What is the relationship between the price margins of the
+  Intrade market and the actual margin of victory? Using only the
+  market data from the day before the election in 2008, regress
+  Obama's actual margin of victory in each state on Obama's price
+  margin from the Intrade markets. Similarly, in a separate analysis,
+  regress Obama's actual margin of victory on the Obama's predicted
+  margin from the latest polls within each state. Interpret the
+  results of these regressions.
+
+```{r}
+year_2008  <- merge(election_2008, trade_2008, by = "state")
+
+#year_2008 <- merge(year_2008, polls_2008, by = "state")
+
+day_before_2008 <- subset(year_2008, subset = (day == "2008-11-04"))
+
+for (i in 1:51) {
+  day_before_2008$margin[i] <- day_before_2008$Obama[i] - day_before_2008$McCain[i]
+  day_before_2008$price_margin[i] <- day_before_2008$PriceD[i] - day_before_2008$PriceR[i]
+  #day_before_2008$poll_margin[i] <- day_before_2008$Obama.y[i] - day_before_2008$McCain.y[i]
+}
+
+lm(margin ~ price_margin, day_before_2008)
+plot(day_before_2008$margin, day_before_2008$price_margin, abline(lm(day_before_2008$price_margin ~ day_before_2008$margin)))
+
+day_before_2008 <- merge(day_before_2008, polls_2008, by = "state")
+
+
+#day_before_2008 <- subset(day_before_2008, subset = (middate >= "2008-11-04" | middate <= "2008-10-31"))
+
+
+#for (i in 1:51)
+```
+
+
+## Question 6
+
+
+Do the 2008 predictions of polls and Intrade accurately predict
+  each state's 2012 elections results?  Using the fitted regressions
+  from the previous question, forecast Obama's actual margin of
+  victory for the 2012 election in two ways.  First, use the 2012
+  Intrade price margins from the day before the election as the
+  predictor in each state.  Recall that the 2012 Intrade data do not
+  contain market prices for all states. Ignore states without data.
+  Second, use the 2012 poll predicted margins from the latest polls in
+  each state as the predictor, found in `polls12.csv`.
+  
+```{r }
+
+
+```
+  
+  
 
 
 

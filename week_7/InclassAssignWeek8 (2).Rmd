@@ -1,0 +1,58 @@
+---
+title: "Untitled"
+output: html_document
+---
+``` {r read_in}
+trade_2008 <- read.csv("intrade08.csv")
+trade_2012 <- read.csv("intrade12.csv")
+
+polls_2008 <- read.csv("polls08.csv")
+polls_2012 <- read.csv("polls12.csv")
+
+election_2008 <- read.csv("pres08.csv")
+election_2012 <- read.csv("pres12.csv")
+```
+## Question 5
+
+What is the relationship between the price margins of the
+  Intrade market and the actual margin of victory? Using only the
+  market data from the day before the election in 2008, regress
+  Obama's actual margin of victory in each state on Obama's price
+  margin from the Intrade markets. Similarly, in a separate analysis,
+  regress Obama's actual margin of victory on the Obama's predicted
+  margin from the latest polls within each state. Interpret the
+  results of these regressions.
+
+```{r}
+year_2008  <- merge(election_2008, trade_2008, by = "state")
+
+#year_2008 <- merge(year_2008, polls_2008, by = "state")
+
+day_before_2008 <- subset(year_2008, subset = (day == "2008-11-04"))
+
+for (i in 1:51) {
+  day_before_2008$margin[i] <- day_before_2008$Obama[i] - day_before_2008$McCain[i]
+  day_before_2008$price_margin[i] <- day_before_2008$PriceD[i] - day_before_2008$PriceR[i]
+  #day_before_2008$poll_margin[i] <- day_before_2008$Obama.y[i] - day_before_2008$McCain.y[i]
+}
+
+lm(margin ~ price_margin, day_before_2008)
+plot(day_before_2008$margin, day_before_2008$price_margin, abline(lm(day_before_2008$price_margin ~ day_before_2008$margin)))
+
+#day_before_2008 <- merge(day_before_2008, )
+
+```
+
+  
+## Question 6
+
+
+Do the 2008 predictions of polls and Intrade accurately predict
+  each state's 2012 elections results?  Using the fitted regressions
+  from the previous question, forecast Obama's actual margin of
+  victory for the 2012 election in two ways.  First, use the 2012
+  Intrade price margins from the day before the election as the
+  predictor in each state.  Recall that the 2012 Intrade data do not
+  contain market prices for all states. Ignore states without data.
+  Second, use the 2012 poll predicted margins from the latest polls in
+  each state as the predictor, found in `polls12.csv`.
